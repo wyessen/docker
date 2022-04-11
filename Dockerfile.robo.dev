@@ -1,0 +1,34 @@
+FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN apt-get install -y apt-utils
+
+RUN apt-get upgrade -y
+
+# Install clang...
+RUN apt-get install -y \
+	clang \
+	clang-tidy \
+	clang-format \
+	clang-tools \
+	lldb 
+
+# Install build tools...
+RUN apt-get install -y \
+	cmake \
+	ninja-build
+	
+# Install code analysis, testing, logging, and performance tools...
+RUN apt-get install -y \
+	valgrind \
+	libgtest-dev \
+	libgoogle-glog-dev \
+	libbenchmark-dev \
+	linux-tools-common \
+	linux-tools-generic
+
+# The clang static code analysis tool frontend, that also has a vs-code plugin
+RUN pip install codechecker
+
