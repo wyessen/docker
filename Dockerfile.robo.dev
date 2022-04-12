@@ -23,7 +23,12 @@ RUN $apt_install \
 	clang-format \
 	lld
 
-RUN $apt_install gcc g++ gdb
+RUN $apt_install \
+	gcc \
+	g++ \
+	gdb \
+	build-essential
+
 
 RUN mv /usr/bin/ld /usr/bin/ld.unused
 RUN ln -s /usr/bin/lld /usr/bin/ld
@@ -39,10 +44,7 @@ RUN $apt_install \
 	libgtest-dev \
 	libgoogle-glog-dev \
 	libbenchmark-dev \
-	linux-tools-common \
-	linux-tools-generic \
-	strace \
-	ltrace \
+	google-mock \
 	lcov \
 	gcovr
 
@@ -63,10 +65,18 @@ RUN $apt_install \
 	git \
 	vim \
 	htop \
+	atop \
+	iotop \
 	tmux \
 	socat \
 	jpnevulator \
-	net-tools
+	net-tools \
+	tcpdump \
+	linux-tools-common \
+	linux-tools-generic \
+	strace \
+	ltrace \
+	xxd
 
 # Set some convenience options
 RUN echo "set -g mouse on" > /root/.tmux.conf
